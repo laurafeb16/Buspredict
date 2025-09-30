@@ -5,46 +5,17 @@ import random
 from datetime import datetime, timedelta
 from .factores import aplicar_lluvia, aplicar_factor_quincena
 from .búsqueda_secuencial_binaria import minutos_espera
-
-class TiposBuses:
-    """Configuración de tipos de buses panameños"""
-    
-    CAPACIDADES = {
-        "DiabloRojo": 45,
-        "Metrobus": 80, 
-        "Chiva": 25
-    }
-    
-    CONFIABILIDAD = {
-        "DiabloRojo": 0.65,  # 65% de puntualidad
-        "Metrobus": 0.85,    # 85% de puntualidad  
-        "Chiva": 0.55        # 55% de puntualidad
-    }
-    
-    VELOCIDAD_PROMEDIO = {
-        "DiabloRojo": 45,    # km/h
-        "Metrobus": 35,      # km/h
-        "Chiva": 25          # km/h
-    }
-    
-    RETRASO_BASE = {
-        "DiabloRojo": 8,     # minutos
-        "Metrobus": 3,       # minutos
-        "Chiva": 12          # minutos
-    }
+from ..modelos.tipo_buses import TiposBuses  # ✅ Usar la clase original
 
 class PredictorBuses:
     """Sistema de predicción que integra todos los factores"""
     
     def __init__(self):
-        self.tipos = TiposBuses()
+        self.tipos = TiposBuses()  # ✅ Usar clase original, no duplicar
     
     def predecir_llegada(self, bus, horarios, hora_actual, factores_externos=None):
         """
-        Predicción principal que combina:
-        - Búsqueda binaria (para encontrar próximo horario)
-        - Factores panameños (lluvia, quincena)
-        - Características del tipo de bus
+        Predicción principal que combina todos los algoritmos implementados
         """
         if factores_externos is None:
             factores_externos = {}
@@ -95,19 +66,3 @@ class PredictorBuses:
         ahora = datetime.combine(datetime.today(), hora_actual)
         llegada = ahora + timedelta(minutes=minutos_adicionales)
         return llegada.strftime("%H:%M")
-    
-    def generar_multiples_predicciones(self, buses, horarios, hora_actual):
-        """Genera predicciones para múltiples buses"""
-        predicciones = []
-        
-        for bus in buses:
-            if hasattr(bus, 'tipo_bus'):
-                pred = self.predecir_llegada(bus, horarios, hora_actual)
-                predicciones.append({
-                    'bus': bus,
-                    'prediccion': pred
-                })
-        
-        # Ordenar por tiempo estimado
-        predicciones.sort(key=lambda x: x['prediccion']['minutos_estimados'])
-        return predicciones

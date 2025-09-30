@@ -1,4 +1,4 @@
-from tipo_buses import TiposBuses
+from .tipo_buses import TiposBuses
 import random
 
 class Bus:
@@ -17,6 +17,7 @@ class Bus:
         self.retraso_base = TiposBuses.RETRASO_BASE[tipo_bus]
         
         self.pasajeros_actuales = 0
+        self.pasajeros = []
         self.posicion_actual = 0
         self.tiempo_llegada_estimado = None
     
@@ -31,12 +32,13 @@ class Bus:
         """Retorna espacios disponibles en el bus"""
         return max(0, self.capacidad - self.pasajeros_actuales)
     
-    def subir_pasajeros(self, cantidad):
-        """Sube pasajeros respetando la capacidad del tipo de bus"""
-        espacios_disponibles = self.obtener_capacidad_disponible()
-        pasajeros_que_suben = min(cantidad, espacios_disponibles)
-        self.pasajeros_actuales += pasajeros_que_suben
-        return pasajeros_que_suben
+    def subir_pasajero(self, pasajero):
+        """Sube un pasajero respetando la capacidad"""
+        if len(self.pasajeros) < self.capacidad:
+            self.pasajeros.append(pasajero)
+            self.pasajeros_actuales = len(self.pasajeros)
+            return True
+        return False
     
     def bajar_pasajeros(self, cantidad):
         """Baja pasajeros del bus"""
