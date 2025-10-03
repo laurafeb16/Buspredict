@@ -1,4 +1,6 @@
-﻿import matplotlib.pyplot as plt
+﻿# -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import numpy as np
 from datetime import datetime, timedelta
 
@@ -28,11 +30,12 @@ def grafico_tiempos_por_hora(datos_horarios, factores_aplicados=None):
     plt.xlabel('Hora del Día', fontsize=12)
     plt.ylabel('Tiempo de Espera (minutos)', fontsize=12)
     
-    # Leyenda
-    plt.bar([], [], color='#1f77b4', alpha=0.8, label='☔ Con Lluvia Tropical')
-    plt.bar([], [], color='#ff7f0e', alpha=0.8, label='💰 Día de Quincena') 
-    plt.bar([], [], color='#2ca02c', alpha=0.8, label='☀️ Día Normal')
-    plt.legend()
+    # Crear leyenda con patches de colores correctos
+    lluvia_patch = mpatches.Patch(color='#1f77b4', alpha=0.8, label='Con Lluvia Tropical')
+    quincena_patch = mpatches.Patch(color='#ff7f0e', alpha=0.8, label='Día de Quincena')
+    normal_patch = mpatches.Patch(color='#2ca02c', alpha=0.8, label='Día Normal')
+    
+    plt.legend(handles=[lluvia_patch, quincena_patch, normal_patch])
     
     plt.grid(axis='y', alpha=0.3)
     plt.tight_layout()
@@ -91,9 +94,9 @@ def grafico_factores_panama():
     # Gráfico de barras apiladas
     plt.bar(dias, tiempos_base, label='Tiempo Base', color='#2ca02c', alpha=0.8)
     plt.bar(dias, incrementos, bottom=tiempos_base, label='Factor Panameño', 
-           color=['#gray', '#ff7f0e', '#1f77b4', '#d62728'])
+           color=['#808080', '#ff7f0e', '#1f77b4', '#d62728'])
     
-    plt.title('🇵🇦 IMPACTO DE FACTORES ÚNICOS PANAMEÑOS', 
+    plt.title('IMPACTO DE FACTORES ÚNICOS PANAMEÑOS', 
               fontsize=16, fontweight='bold')
     plt.ylabel('Tiempo Total de Espera (minutos)')
     
@@ -122,8 +125,6 @@ def mostrar_graficos_demo():
         '07:00': {'quincena': True}, '08:00': {'lluvia': True}, 
         '17:00': {'quincena': True, 'lluvia': True}
     }
-    
-    print("\n Generando gráficos...")
     
     # Gráfico 1
     plt1 = grafico_tiempos_por_hora(datos_horarios, factores)

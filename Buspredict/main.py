@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 from Buspredict.modelos import Bus, Parada, Pasajero
 from Buspredict.algoritmos import (
     convertir_hora,
@@ -9,12 +10,12 @@ from Buspredict.algoritmos import (
     aplicar_factor_quincena,
     aplicar_lluvia,
 )
-from Buspredict.algoritmos.clasificación import (
+from Buspredict.algoritmos.clasificacion import (
     ordenar_buses_por_tiempo,
     optimizar_horarios_por_dia,
     clasificacion_quicksort
 )
-from Buspredict.visualización.gráficos import mostrar_graficos_demo
+from Buspredict.visualizacion.graficos import mostrar_graficos_demo
 import random
 from datetime import datetime
 
@@ -44,7 +45,7 @@ def demo_espectacular():
     tiempo_final, retraso_lluvia = aplicar_lluvia(tiempo_quincena, probabilidad=1.0)
     
     print(f"Día 15 con lluvia tropical: {tiempo_final} minutos")
-    print(f"{tiempo_final - tiempo_base} minutos extra solo por ser panameño y entender el país")
+    print(f"{tiempo_final - tiempo_base} minutos extra")
     
     # === OPTIMIZACIÓN ===
     print("\nOPTIMIZACIÓN:")
@@ -58,9 +59,9 @@ def demo_espectacular():
     
     # === DATOS SIMULADOS DE BUSES ===
     buses_data = [
-        {'tipo': 'Diablos Rojos', 'tiempo_espera': 15, 'tiempo_viaje': 25, 'confiabilidad': 0.65},
-        {'tipo': 'Metrobús', 'tiempo_espera': 8, 'tiempo_viaje': 18, 'confiabilidad': 0.85},
-        {'tipo': 'Chiva', 'tiempo_espera': 12, 'tiempo_viaje': 22, 'confiabilidad': 0.70}
+        {'tipo': 'Diablos Rojos', 'tiempo_espera': 15, 'tiempo_viaje': 16, 'confiabilidad': 0.65},
+        {'tipo': 'Metrobús', 'tiempo_espera': 8, 'tiempo_viaje': 20, 'confiabilidad': 0.85},
+        {'tipo': 'Chiva', 'tiempo_espera': 12, 'tiempo_viaje': 22, 'confiabilidad': 0.55}
     ]
     
     # Calcular tiempo total

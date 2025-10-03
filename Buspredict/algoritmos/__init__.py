@@ -1,5 +1,5 @@
 # BÚSQUEDAS
-from .búsqueda_secuencial_binaria import (
+from .busqueda_secuencial_binaria import (
     convertir_hora,
     ordenar_horarios,
     busqueda_secuencial,

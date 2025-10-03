@@ -1,5 +1,6 @@
-﻿class TiposBuses:
-    """Definición de los tipos de buses en Panamá"""
+﻿# -*- coding: utf-8 -*-
+class TiposBuses:
+    """Definicion de los tipos de buses en Panama"""
     
     # Capacidades por tipo de bus
     CAPACIDADES = {
@@ -8,7 +9,7 @@
         "Chiva": 25
     }
     
-    # Factor de confiabilidad según tipo (puntualidad)
+    # Factor de confiabilidad segun tipo (puntualidad)
     CONFIABILIDAD = {
         "DiabloRojo": 0.65,  # 65% de puntualidad
         "Metrobus": 0.85,    # 85% de puntualidad  
@@ -17,9 +18,9 @@
     
     # Factor de velocidad promedio (km/h en ciudad)
     VELOCIDAD_PROMEDIO = {
-        "DiabloRojo": 25,    # Más lento por paradas frecuentes
-        "Metrobus": 35,      # Más rápido por carriles exclusivos
-        "Chiva": 20          # Más lento por condiciones rurales
+        "DiabloRojo": 25,    # Mas lento por paradas frecuentes
+        "Metrobus": 35,      # Mas rapido por carriles exclusivos
+        "Chiva": 20          # Mas lento por condiciones rurales
     }
     
     # Factor de retraso adicional por tipo

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .tipo_buses import TiposBuses
 import random
 
@@ -8,7 +9,7 @@ class Bus:
         
         # Validar tipo de bus
         if not TiposBuses.validar_tipo(tipo_bus):
-            raise ValueError(f"Tipo de bus inválido: {tipo_bus}")
+            raise ValueError(f"Tipo de bus invalido: {tipo_bus}")
         
         self.tipo_bus = tipo_bus
         self.capacidad = TiposBuses.CAPACIDADES[tipo_bus]
